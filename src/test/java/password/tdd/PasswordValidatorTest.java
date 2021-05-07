@@ -7,12 +7,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PasswordValidatorTest {
 
+    private String user = "user";
+    private String admin = "admin";
+
     /*
-        Test smaller lenght password
+        Test smaller lenght password User
     */
     @Test
-    public void SmallerLengthPassword() {
-        assertFalse(PasswordValidator.isValidPassword("abc12"));
+    public void SmallerLengthPasswordUser() {
+        assertFalse(PasswordValidator.isValidPassword("abc12", user));
+    }
+
+    /*
+        Test smaller lenght password Admin
+    */
+    @Test
+    public void SmallerLengthPasswordAdmin() {
+        assertFalse(PasswordValidator.isValidPassword("abcd1234", admin));
     }
 
     /*
@@ -20,7 +31,7 @@ public class PasswordValidatorTest {
     */
     @Test
     public void UpperCaseOnlyPassword() {
-        assertFalse(PasswordValidator.isValidPassword("ABCDEF"));
+        assertFalse(PasswordValidator.isValidPassword("ABCDEF", user));
     }
 
     /*
@@ -28,7 +39,7 @@ public class PasswordValidatorTest {
     */
     @Test
     public void LowerCaseOnlyPassword() {
-        assertFalse(PasswordValidator.isValidPassword("abcdef"));
+        assertFalse(PasswordValidator.isValidPassword("abcdef", user));
     }
 
     /*
@@ -36,7 +47,7 @@ public class PasswordValidatorTest {
     */
     @Test
     public void AlphabetOnlyPassword() {
-        assertFalse(PasswordValidator.isValidPassword("abcDEF"));
+        assertFalse(PasswordValidator.isValidPassword("abcDEF", user));
     }
 
     /*
@@ -44,7 +55,7 @@ public class PasswordValidatorTest {
     */
     @Test
     public void AlphaNumericOnlyPassword() {
-        assertFalse(PasswordValidator.isValidPassword("abcDEF123"));
+        assertFalse(PasswordValidator.isValidPassword("abcDEF123", user));
     }
 
     /*
@@ -52,7 +63,7 @@ public class PasswordValidatorTest {
     */
     @Test
     public void LowerCaseMissingPassword() {
-        assertFalse(PasswordValidator.isValidPassword("ABC@DEF123"));
+        assertFalse(PasswordValidator.isValidPassword("ABC@DEF123", user));
     }
 
     /*
@@ -60,15 +71,23 @@ public class PasswordValidatorTest {
     */
     @Test
     public void InvalidSpecialCharPassword() {
-        assertFalse(PasswordValidator.isValidPassword("abc)@DEF123"));
+        assertFalse(PasswordValidator.isValidPassword("abc)@DEF123", user));
     }
 
     /*
-        Test valid password
+        Test valid password User
     */
     @Test
-    public void ValidPassword() {
-        assertTrue(PasswordValidator.isValidPassword("abc@DEF123"));
+    public void ValidPasswordUser() {
+        assertTrue(PasswordValidator.isValidPassword("abc@DEF123", user));
+    }
+
+    /*
+        Test valid password Admin
+    */
+    @Test
+    public void ValidPasswordAdmin() {
+        assertTrue(PasswordValidator.isValidPassword("abc@DEF123", admin));
     }
 
 }

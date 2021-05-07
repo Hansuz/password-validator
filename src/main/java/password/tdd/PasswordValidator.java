@@ -7,16 +7,23 @@ public class PasswordValidator {
 
     /*
      * Valid password :
-     *   - 6 characters minimum
+     *   - 6 characters minimum for user but 6 characters minimum for admin
      *   - 1 lowercase character at least
      *   - 1 uppercase character at least
      *   - 1 numeric character at least
      *   - 1 of these special characters (!, @, #, $, %, ^, &) at least
      */
 
-    public static boolean isValidPassword(final String myPassword) {
-        if(myPassword.length()<6) {
-            return false;
+    public static boolean isValidPassword(final String myPassword, String type) {
+        if(type == "admin"){
+            if(myPassword.length()<10) {
+                return false;
+            }
+        }
+        else{
+            if(myPassword.length()<6) {
+                return false;
+            }
         }
 
         boolean LowerCaseCharacter = false;
